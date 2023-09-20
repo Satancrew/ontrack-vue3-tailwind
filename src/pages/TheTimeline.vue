@@ -1,6 +1,14 @@
 <script setup>
+import { validateTimelineItems } from '../validator';
 import TimelineItem from '../components/TimelineItem.vue';
-defineProps(['timelineItems']);
+
+defineProps({
+  timelineItems: {
+    required: true,
+    type: Array,
+    validator: validateTimelineItems
+  }
+});
 </script>
 
 <template>
