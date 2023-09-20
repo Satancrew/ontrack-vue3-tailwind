@@ -1,20 +1,23 @@
-import { PAGE_ACTIVITIES, PAGE_PROGRESS, PAGE_TIMELINE, HOURS_IN_DAY } from './constants';
+import { PAGE_TIMELINE, HOURS_IN_DAY, MIDNIGHT_HOUR } from './constants';
+import { isPageValid } from './validator';
 
+// Берем название страницы и сохраняем ее в хеш, если ее нет, то ставим страницу timeline
 export const normalizePageHash = () => {
-  const hash = window.location.hash.slice(1);
+  const page = window.location.hash.slice(1);
 
-  if ([PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS].includes(hash)) {
-    return hash;
+  if (isPageValid(page)) {
+    return page;
   } else {
     window.location.hash = PAGE_TIMELINE;
   }
   return PAGE_TIMELINE;
 }
 
+// Генерируем часы от полуночи до 24 
 export const generateTimelineItems = () => {
   const timelimeItems = [];
 
-  for (let hour = 0; hour < HOURS_IN_DAY; hour++) {
+  for (let hour = MIDNIGHT_HOUR; hour < HOURS_IN_DAY; hour++) {
     timelimeItems.push({ hour });
 }
 
