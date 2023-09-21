@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from 'vue';
 import { isTimelineItemValid } from '../validator';
 import BaseSelect from './BaseSelect.vue';
 
@@ -23,12 +24,17 @@ const options = [
   { value: 3, label: 'Training' }
 ];
 
-const selectedActivityId = 1;
+const selectedActivityId = ref(1);
 </script>
 
 <template>
   <li class="relative flex flex-col gap-2 border-t border-gray-200 py-10 px-4">
     <a href="" :class="hourLinkClasses">{{ timelineItem.hour }}:00</a>
-    <BaseSelect :options="options" placeholder="Rest" :selected="selectedActivityId" />
+    <BaseSelect
+      :options="options"
+      placeholder="Rest"
+      :selected="selectedActivityId"
+      @select="selectedActivityId = $event"
+    />
   </li>
 </template>
