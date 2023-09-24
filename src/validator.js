@@ -52,6 +52,6 @@ const isSelectOptionValid = ({ value, label }) => {
 };
 
 // Проверка валидности часа
-const isHourValid = (hour) => {
+export const isHourValid = (hour) => {
   return isNumber(hour) && isBetween(hour, MIDNIGHT_HOUR, HOURS_IN_DAY);
 };
