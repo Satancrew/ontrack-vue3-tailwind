@@ -55,3 +55,17 @@ const isSelectOptionValid = ({ value, label }) => {
 export const isHourValid = (hour) => {
   return isNumber(hour) && isBetween(hour, MIDNIGHT_HOUR, HOURS_IN_DAY);
 };
+
+// Проверка валидности активности
+
+export const isActivityValid = (activity) => {
+  return isNotEmptyString(activity);
+};
+
+const isNotEmptyString = (value) => {
+  return isString(value) && value.length > 0;
+};
+
+export const validateActivities = (activities) => {
+  return activities.every(isActivityValid);
+};
